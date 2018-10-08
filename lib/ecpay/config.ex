@@ -1,6 +1,6 @@
 defmodule Ecpay.Config do
 
-  def merchent_id, do: from_env(:ecpay, :merchent_id)
+  def merchant_id, do: from_env(:ecpay, :merchant_id)
   def return_url, do: from_env(:ecpay, :return_url)
   def hash_key, do: from_env(:ecpay, :hash_key)
   def hash_iv, do: from_env(:ecpay, :hash_iv)

@@ -5,7 +5,7 @@ defmodule Ecpay.PaymentClient do
 
   def aio_check_out_all(params) do
     params
-    |> Map.put(:mechent_id, Config.merchent_id())
+    |> Map.put(:merchant_id, Config.merchant_id())
     |> Map.put(:return_url, Config.return_url())
     |> Map.put(:check_mac_value, gen_check_mac_value(params))
     |> pascal_params()
