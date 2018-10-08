@@ -1,9 +1,11 @@
 defmodule Ecpay.Config do
 
   def merchent_id, do: from_env(:ecpay, :merchent_id)
+  def return_url, do: from_env(:ecpay, :return_url)
   def hash_key, do: from_env(:ecpay, :hash_key)
   def hash_iv, do: from_env(:ecpay, :hash_iv)
 
+  @spec from_env(atom(), atom(), any()) :: any()
   def from_env(otp_app, key, default \\ nil)
 
   def from_env(otp_app, key, default) do
