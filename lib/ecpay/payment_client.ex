@@ -5,9 +5,7 @@ defmodule Ecpay.PaymentClient do
 
   def aio_check_out_all(params) do
     params
-    |> Map.put(:merchant_id, Config.merchant_id())
-    |> Map.put(:return_url, Config.return_url())
-    |> Map.put(:check_mac_value, gen_check_mac_value(params))
+    |> add_base_params()
     |> pascal_params()
     |> do_post()
   end
@@ -20,6 +18,14 @@ defmodule Ecpay.PaymentClient do
     |> encode_string()
     |> String.downcase()
     |> encrypted_by_sha256()
+  end
+
+  defp add_base_params(params) do
+    params
+    |> Map.put(:merchant_id, Config.merchant_id())
+    |> Map.put(:return_url, Config.return_url())
+    |> Map.put(:encrypt_type, Config.return_url())
+    |> Map.put(:check_mac_value, gen_check_mac_value(params))
   end
 
   defp pascal_params(params) do

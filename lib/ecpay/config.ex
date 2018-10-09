@@ -4,6 +4,7 @@ defmodule Ecpay.Config do
   def return_url, do: from_env(:ecpay, :return_url)
   def hash_key, do: from_env(:ecpay, :hash_key)
   def hash_iv, do: from_env(:ecpay, :hash_iv)
+  def encrypt_type, do: from_env(:ecpay, :encrypt_type, 1)
 
   @spec from_env(atom(), atom(), any()) :: any()
   def from_env(otp_app, key, default \\ nil)
