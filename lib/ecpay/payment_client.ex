@@ -24,7 +24,8 @@ defmodule Ecpay.PaymentClient do
     params
     |> Map.put(:merchant_id, Config.merchant_id())
     |> Map.put(:return_url, Config.return_url())
-    |> Map.put(:encrypt_type, Config.return_url())
+    |> Map.put(:encrypt_type, Config.encrypt_type())
+    |> Map.put(:payment_type, Config.payment_type())
     |> Map.put(:check_mac_value, gen_check_mac_value(params))
   end
 
