@@ -3,15 +3,9 @@ defmodule Ecpay.PaymentClient do
   alias Ecpay.Config
   alias __MODULE__
 
-  def aio_check_out_all(params) do
+  def gen_check_mac_value(params) do
     params
     |> add_base_params()
-    |> pascal_params()
-    |> do_post()
-  end
-
-  defp gen_check_mac_value(params) do
-    params
     |> pascal_params()
     |> query_string()
     |> add_hash()
