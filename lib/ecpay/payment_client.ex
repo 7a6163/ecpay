@@ -20,11 +20,10 @@ defmodule Ecpay.PaymentClient do
     |> Map.put(:return_url, Config.return_url())
     |> Map.put(:encrypt_type, Config.encrypt_type())
     |> Map.put(:payment_type, Config.payment_type())
-    |> Map.put(:check_mac_value, gen_check_mac_value(params))
   end
 
   defp pascal_params(params) do
-    for {key, val} <- params, into: %{}, do: {Macro.camelize(key), val}
+    for {key, val} <- params, into: %{}, do: {Macro.camelize(Atom.to_string(key)), val}
   end
 
   defp query_string(params) do
