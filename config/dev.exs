@@ -1,7 +1,7 @@
 use Mix.Config
 
 config :ecpay,
-  merchant_id: {:system, "MERCHANT_ID"},
-  hash_key: {:system, "HASH_KEY"},
-  hash_iv:  {:system, "HASH_IV"},
+  merchant_id: "2000132",
+  hash_key: "5294y06JbISpM5x9",
+  hash_iv: "v77hoKGq4kWxNNIS",
   post_url: {:system, "POST_URL"}

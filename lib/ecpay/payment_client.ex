@@ -25,12 +25,12 @@ defmodule Ecpay.PaymentClient do
   defp pascal_params(params) do
     result = for {key, val} <- params, into: %{}, do: {Macro.camelize(Atom.to_string(key)), val}
     merchant_id = Map.get(result, "MerchantId")
-    return_url = Map.get(result, "ReutrnUrl")
+    return_url = Map.get(result, "ReturnUrl")
 
     result
-    |> Map.drop(["MerchantId", "ReutrnUrl"])
+    |> Map.drop(["MerchantId", "ReturnUrl"])
     |> Map.put("MerchantID", merchant_id)
-    |> Map.put("ReutrnURL", return_url)
+    |> Map.put("ReturnURL", return_url)
   end
 
   defp query_string(params) do
@@ -48,5 +48,4 @@ defmodule Ecpay.PaymentClient do
   defp encrypted_by_sha256(query_string) do
     Base.encode16(:crypto.hash(:sha256, query_string))
   end
-
 end
