@@ -23,7 +23,14 @@ defmodule Ecpay.PaymentClient do
   end
 
   defp pascal_params(params) do
-    for {key, val} <- params, into: %{}, do: {Macro.camelize(Atom.to_string(key)), val}
+    result = for {key, val} <- params, into: %{}, do: {Macro.camelize(Atom.to_string(key)), val}
+    merchant_id = Map.get(result, "MerchantId")
+    return_url = Map.get(result, "ReutrnUrl")
+
+    result
+    |> Map.drop(["MerchantId", "ReutrnUrl"])
+    |> Map.put("MerchantID", merchant_id)
+    |> Map.put("ReutrnURL", return_url)
   end
 
   defp query_string(params) do
@@ -42,7 +49,4 @@ defmodule Ecpay.PaymentClient do
     Base.encode16(:crypto.hash(:sha256, query_string))
   end
 
-  defp do_post(params) do
-    PaymentClient.post!("https://payment-stage.ecpay.com.tw/Cashier/AioCheckOut/V5", params)
-  end
 end
